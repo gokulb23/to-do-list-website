@@ -146,6 +146,8 @@ function addArrowKeysFunctionality(textField) {
     })
 }
 
+alert("Enter automatically creates a new item. Del removes the item you are currently focused on.");
+
 const checkbox0 = document.getElementById('checkbox0');
 addCheckBoxFunctionality(checkbox0);
 const textField0 = document.getElementById('textField0');
