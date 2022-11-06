@@ -1,3 +1,7 @@
+var checked = 0;
+var counter = 1;
+var popup = document.querySelector('.popup');
+
 // for drop down menu, disabled atm
 document.addEventListener('click', e => {
     const isDropdownButton = e.target.matches('[data-dropdown-button]');
@@ -75,8 +79,10 @@ function createNewItemFunctionality(element) {
                 itemContainers[itemContainers.length - 1].querySelector(".textField");
             createNewItem(lastTextField);
             counter++;
+            // localStorage.setItem('counter', counter);
         })
     }
+
 }
 
 function addCheckBoxFunctionality(checkbox) {
@@ -91,14 +97,16 @@ function addCheckBoxFunctionality(checkbox) {
         }
         currTextField.disabled = true;
         currTextField.style.opacity = '0.5';
-        if (currTextField.value === '') return;
+        //if (currTextField.value === '') return;
         currTextField.style.textDecoration = 'line-through'; 
         checked++;
         // check if all check boxes are checked
         if (checked === counter) {
             console.log('All done');
             // implement popup message box + confetti
+            popup.classList.add('active');  
         }
+        // localStorage.setItem('checked', checked);
     });
 }
 
@@ -108,7 +116,8 @@ function addDelFunctionality(textField) {
         textField.parentElement.previousSibling.children[1].focus();
         textField.parentElement.remove();
         counter--;
-    });    
+        // localStorage.setItem('counter', counter);
+    });   
 }
 
 function addRemoveFunctionality(removeButton) {
@@ -120,6 +129,7 @@ function addRemoveFunctionality(removeButton) {
         removeButton.parentElement.previousSibling.children[1].focus();
         removeButton.parentElement.remove();
         counter--;
+        // localStorage.setItem('counter', counter);
     });
 }
 
@@ -144,11 +154,11 @@ addArrowKeysFunctionality(textField0);
 const addButton0 = document.getElementById('addButton0');
 createNewItemFunctionality(addButton0);
 
-var counter = 1;
-if (localStorage.getItem('counter') != null) {
-    counter = localStorage.getItem('counter');
-} 
-var checked = 0;
-if (localStorage.getItem('checked') != null) {
-    checked = localStorage('checked');
-} 
+var closeBtn = document.querySelector('.closePopup');
+closeBtn.onclick = function() {
+    popup.classList.remove('active')
+}
+
+// var confettiSettings = { target: 'my-canvas' };
+// var confetti = new ConfettiGenerator(confettiSettings);
+// confetti.render();

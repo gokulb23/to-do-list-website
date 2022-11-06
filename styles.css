@@ -110,3 +110,34 @@ body {
     display: flex;
     justify-content: center;
 }
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: white;
+    width: 200px;
+    height: 250px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, .1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    visibility: hidden;
+}
+
+.closePopup {
+    position: absolute;
+    top: 0%;
+    right: 0;
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    font-family: consolas;
+}
+
+.popup.active {
+    visibility: visible;
+}
